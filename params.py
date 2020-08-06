@@ -8,7 +8,7 @@ import glob
 def get_session(jobid):
     # get the tmux session name corresponding to the jobid
     #name = subprocess.check_output(['squeue','-j','{}'.format(jobid),'-O','name','--noheader'])
-    cmd = ['ssh','localhost','-o','StrictHostKeyChecking=no','tmux','list-sessions']
+    cmd = ['ssh','localhost','-o','StrictHostKeyChecking=no','-o','UserKnownHostsFile=/dev/null','-o','UpdateHostKeys=no','-o','LogLevel=error','tmux','list-sessions']
     try:
         #sessions = subprocess.check_output(['squeue','-j','{}'.format(jobid),'-O','name','--noheader'])
         sessions = subprocess.check_output(cmd)
