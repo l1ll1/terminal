@@ -1,6 +1,6 @@
 #!/bin/bash
 env
-ssh -t localhost -o StrictHostKeyChecking=no tmux new-session -d -s $SLURM_JOBID bash
+ssh -t localhost -o StrictHostKeyChecking=no srun -O --jobid $SLURM_JOBID tmux new-session -d -s $SLURM_JOBID bash
 # determine the process id of the tmux server
 pid=$( /bin/ps x | /bin/grep -i "[t]mux new-session -d -s" | sed 's/^\ *//' | cut -f 1 -d " " )
 echo $pid
